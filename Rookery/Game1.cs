@@ -12,6 +12,9 @@ namespace Rookery
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Texture2D playerImg;
+        Vector2 playerPos;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -26,8 +29,7 @@ namespace Rookery
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            playerPos = new Vector2(0.0f, 0.0f);
             base.Initialize();
         }
 
@@ -39,7 +41,7 @@ namespace Rookery
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            playerImg = Content.Load<Texture2D>("Crown");
             // TODO: use this.Content to load your game content here
         }
 
@@ -75,7 +77,11 @@ namespace Rookery
         {
             GraphicsDevice.Clear(Color.White);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(playerImg, playerPos, Color.White);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
